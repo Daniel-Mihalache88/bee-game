@@ -1,3 +1,3 @@
-import { Game } from "./game.js";
+import { GameController } from "./gameController.js";
 
-new Game();
+new GameController();

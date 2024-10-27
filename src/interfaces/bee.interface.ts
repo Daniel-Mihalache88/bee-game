@@ -1,17 +1,16 @@
-
-
-export interface Category  {
-    count: number,
-    health: number
+export interface Category {
+    count: number;
+    health: number;
 }
 
 export interface SwarnData {
-    queen: Category,
-    workers: Category,
-    drones: Category
+    queen: Category;
+    worker: Category;
+    drone: Category;
 }
 
 export interface Bee {
-    type: keyof SwarnData,
-    health: number,
+    id: number;
+    type: string;
+    health: number;
 }

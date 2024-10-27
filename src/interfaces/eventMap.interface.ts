@@ -5,6 +5,7 @@ type gameOver = 'queenDead' | 'allDead';
 export type EventMap = {
     hit: [bee: Bee],
     kill: [beeId: number],
-    gameOver: [gameOver: gameOver]
-    playerCreated: [playerName: string]
+    gameOver: [gameOver: gameOver],
+    restartGame: [shouldRestart: boolean]
+    playerCreated: [playerName: string],
 }

@@ -7,7 +7,7 @@ export class Utils {
     const initialData: SwarnData = {
       queen: { count: 1, health: 100 },
       worker: { count: 5, health: 75 },
-      drone: { count: 8, health: 50 },
+      drone: { count: 8, health: 50 }
     };
 
     Object.entries(initialData).forEach(([type, { count, health }]) => {

@@ -1,5 +1,6 @@
 import { Entity } from '../interfaces/entity.interface';
 import { BeeComponent } from './beeComponent.js';
+import { GameOver } from './gameOverComponent.js';
 
 export class Renderer<T extends Entity> {
   private readonly container: HTMLDivElement;
@@ -29,8 +30,12 @@ export class Renderer<T extends Entity> {
 
   onGameOver(gameOver: string): void {
     if (gameOver === 'queenDead') {
-      document.querySelector('.swarn')?.classList.add('hide');
+      new GameOver('queenDead');
+      this.container.querySelectorAll('.swarn .content').forEach(el => el.innerHTML = '');
+      return;
     }
+
+    new GameOver('allDead');
   }
 
   private getContainer(): HTMLDivElement {
@@ -39,13 +44,12 @@ export class Renderer<T extends Entity> {
     return container;
   }
 
-  private renderContent(entities: Map<number, T>): void {
-    entities.forEach((entity, key) => this.addEntityToUi( entity, key));
+  renderContent(entities: Map<number, T>): void {
+    entities.forEach((entity, key) => this.addEntityToUi(entity, key));
   }
 
   private addEntityToUi(entity: T, id: number): void {
     const uiElement = new BeeComponent(entity.health, id);
-
     this.container.querySelector(`.swarn__element--${entity.type} .content`)?.appendChild(uiElement.element);
   }
 

@@ -1,3 +1,4 @@
+
 export class BeeComponent {
   private beeContainer: HTMLDivElement;
 
@@ -24,7 +25,7 @@ export class BeeComponent {
 
   private createImage(): HTMLImageElement {
     const img = document.createElement('img');
-    img.src = 'assets/bee_icon.png';
+    img.src = 'src/assets/bee_icon.png';
     img.alt = 'bee_icon';
 
     return img;

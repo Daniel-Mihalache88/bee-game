@@ -4,7 +4,7 @@ import { Bee } from "../interfaces/bee.interface";
 enum DamagePerHit {
   Queen = 50,
   Worker = 40,
-  Drone = 25,
+  Drone = 25
 }
 
 export class QueenHitStrategy implements HitStrategy<Bee> {

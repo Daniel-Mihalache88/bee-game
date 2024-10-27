@@ -21,7 +21,7 @@ export class Form {
     const img = document.createElement('img');
 
     span.textContent = 'The Bee Game';
-    img.src = 'assets/game_intro.png';
+    img.src = 'src/assets/game_intro.png';
     img.alt = 'bee_icon';
 
     div.appendChild(img);

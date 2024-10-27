@@ -27,6 +27,7 @@ export class GameController {
     this.emitter.on('kill', (id) => this.updateUiOnBeeKill(id));
     this.emitter.on('gameOver', (data) => this.updateUIOnGameOver(data));
     this.emitter.on('playerCreated', (data) => this.setPlayerName(data));
+    this.emitter.on('restartGame', () => this.onRestartGame());
   }
 
   private initHitButton(): void {
@@ -38,7 +39,7 @@ export class GameController {
 
   private handleBeeHit(): void {
     this.swarn!.hitBee();
-    localStorage.setItem("game", JSON.stringify(Array.from(this.swarn!.entities)));
+    localStorage.setItem('beeGame', JSON.stringify(Array.from(this.swarn!.entities)));
   }
 
   private updateUiOnBeeHit(bee: Bee): void {
@@ -70,15 +71,25 @@ export class GameController {
   }
 
   private initGame(): void {
-    const gameInProgress = localStorage.getItem('game');
+    const gameInProgress = localStorage.getItem('beeGame');
     if (!gameInProgress) {
-      const newData = Utils.getBeeSwarn();
-      this.swarn = new Swarn(newData);
+      this.initNewSwarn();
 
       return;
     }
     const savedData: Map<number, Bee> = new Map(JSON.parse(gameInProgress));
 
     this.swarn = new Swarn(savedData);
+  }
+
+  private onRestartGame() {
+    this.initNewSwarn();
+    localStorage.setItem('beeGame', JSON.stringify(Array.from(this.swarn!.entities)));
+    this.renderer.renderContent(this.swarn!.entities);
+  }
+
+  private initNewSwarn():void {
+    const newData = Utils.getBeeSwarn();
+    this.swarn = new Swarn(newData);
   }
 }

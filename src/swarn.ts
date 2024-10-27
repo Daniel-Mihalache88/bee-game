@@ -33,6 +33,7 @@ export class Swarn<T extends Entity> {
 
     const randomId = this.getRandomEntityId(entityIds);
     const entity = this.entities.get(randomId);
+
     if (!entity) {
       return;
     }
@@ -48,14 +49,11 @@ export class Swarn<T extends Entity> {
   private handleEntityHit(updatedEntity: T | null, entityId: number, entityType: string): void {
     if (!updatedEntity) {
       this.handleEntityDeath(entityId, entityType);
-    } else {
-      this.entities.set(entityId, updatedEntity);
-      this.emitter.emit('hit', updatedEntity as Bee);
+      return;
     }
+    this.entities.set(entityId, updatedEntity);
+    this.emitter.emit('hit', updatedEntity as Bee);
 
-    if (this.entities.size === 0) {
-      this.emitter.emit('gameOver', 'allDead');
-    }
   }
 
   private handleEntityDeath(entityId: number, entityType: string): void {
@@ -66,6 +64,10 @@ export class Swarn<T extends Entity> {
     }
     this.entities.delete(entityId);
     this.emitter.emit('kill', entityId);
+
+    if (this.entities.size === 0) {
+      this.emitter.emit('gameOver', 'allDead');
+    }
   }
 
   private getRandomEntityId(entityIds: number[]): number {

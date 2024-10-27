@@ -3,7 +3,7 @@ import { EventMap } from './interfaces/eventMap.interface';
 import { QueenHitStrategy, WorkerHitStrategy, DroneHitStrategy } from './utils/hitStrategies.js';
 import { HitStrategy } from './interfaces/hitStrategy.interface';
 import { Entity } from './interfaces/entity.interface';
-import { Bee, SwarnData } from './interfaces/bee.interface.js';
+import { SwarnData } from './interfaces/bee.interface.js';
 
 export class Swarn<T extends Entity> {
   private emitter: EventEmitter<EventMap>;
@@ -42,18 +42,17 @@ export class Swarn<T extends Entity> {
 
     if (strategy) {
       const updatedEntity = strategy.hit(entity);
-      this.handleEntityHit(updatedEntity, randomId, entity.type);
+      this.handleEntityHit(updatedEntity.bee, updatedEntity.damage, randomId, entity.type);
     }
   }
 
-  private handleEntityHit(updatedEntity: T | null, entityId: number, entityType: string): void {
+  private handleEntityHit(updatedEntity: T | null, damage: number, entityId: number, entityType: string): void {
     if (!updatedEntity) {
       this.handleEntityDeath(entityId, entityType);
       return;
     }
     this.entities.set(entityId, updatedEntity);
-    this.emitter.emit('hit', updatedEntity as Bee);
-
+    this.emitter.emit('hit', updatedEntity, damage);
   }
 
   private handleEntityDeath(entityId: number, entityType: string): void {
@@ -65,7 +64,7 @@ export class Swarn<T extends Entity> {
     this.entities.delete(entityId);
     this.emitter.emit('kill', entityId);
 
-    if (this.entities.size === 0) {
+    if (this.entities.size === 1) {
       this.emitter.emit('gameOver', 'allDead');
     }
   }

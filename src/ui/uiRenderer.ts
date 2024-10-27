@@ -13,39 +13,41 @@ export class Renderer<T extends Entity> {
     this.renderContent(this.entities);
   }
 
-  onEntityHit(entity: T): void {
-    const el = document.querySelector(`[data-id="${entity.id}"] span`);
-    if (!el) {
-      return;
+  renderContent(entities: Map<number, T>): void {
+    entities.forEach((entity, key) => this.addEntityToUi(entity, key));
+  }
+
+  onEntityHit(entity: T, damage: number): void {
+    const div = this.getEntityContainer(entity.id);
+    if (!div) {
+      throw new Error('Entity Container not found!');
     }
-    this.animateOnHit(document.querySelector(`[data-id="${entity.id}"]`)!);
-    el.textContent = `HP: ${entity.health}`;
+    div.querySelector('span')!.textContent = `HP: ${entity.health}`;
+    this.animateOnHit(div, damage);
   }
 
   onEntityKill(id: number): void {
-    const el = document.querySelector(`[data-id="${id}"]`);
+    const div = this.getEntityContainer(id);
+    if(!div) {
+      throw new Error('Entity Container not found!');
+    }
 
-    el ? el.remove() : null;
+    div.remove();
   }
 
   onGameOver(gameOver: string): void {
     if (gameOver === 'queenDead') {
       new GameOver('queenDead');
-      this.container.querySelectorAll('.swarn .content').forEach(el => el.innerHTML = '');
+      this.clearEntities();
       return;
     }
-
     new GameOver('allDead');
+    this.clearEntities();
   }
 
   private getContainer(): HTMLDivElement {
     const container = document.querySelector('.swarn') as HTMLDivElement;
-
     return container;
-  }
-
-  renderContent(entities: Map<number, T>): void {
-    entities.forEach((entity, key) => this.addEntityToUi(entity, key));
   }
 
   private addEntityToUi(entity: T, id: number): void {
@@ -53,8 +55,21 @@ export class Renderer<T extends Entity> {
     this.container.querySelector(`.swarn__element--${entity.type} .content`)?.appendChild(uiElement.element);
   }
 
-  private animateOnHit(element: HTMLDivElement): void {
+  private clearEntities():void {
+    this.container.querySelectorAll('.swarn .content').forEach(el => el.innerHTML = '');
+  }
+
+  private animateOnHit(element: HTMLDivElement, damage: number): void {
     element.classList.add('zoom');
-    setTimeout(() => element.classList.remove('zoom'), 500);
+    element.querySelector('.damage')!.textContent = `-${damage}`;
+    
+    setTimeout(() => {
+      element.classList.remove('zoom');
+      element.querySelector('.damage')!.textContent = '';
+    }, 750);
+  }
+
+  private getEntityContainer(entityId: number): HTMLDivElement | null {
+    return this.container.querySelector(`[data-id="${entityId}"]`);
   }
 }

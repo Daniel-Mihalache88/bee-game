@@ -23,7 +23,7 @@ export class GameController {
   }
 
   private initEventListeners(): void {
-    this.emitter.on('hit', (data) => this.updateUiOnBeeHit(data));
+    this.emitter.on('hit', (entity, damage) => this.updateUiOnBeeHit(entity, damage));
     this.emitter.on('kill', (id) => this.updateUiOnBeeKill(id));
     this.emitter.on('gameOver', (data) => this.updateUIOnGameOver(data));
     this.emitter.on('playerCreated', (data) => this.setPlayerName(data));
@@ -42,8 +42,8 @@ export class GameController {
     localStorage.setItem('beeGame', JSON.stringify(Array.from(this.swarn!.entities)));
   }
 
-  private updateUiOnBeeHit(bee: Bee): void {
-    this.renderer.onEntityHit(bee);
+  private updateUiOnBeeHit(entity: Bee, damage: number): void {
+    this.renderer.onEntityHit(entity, damage);
   }
 
   private updateUiOnBeeKill(id: number): void {

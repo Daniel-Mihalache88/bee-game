@@ -128,6 +128,13 @@ button {
       .content__item {
         padding: .5rem;
         border-radius: 5px;
+        position: relative;
+
+        .damage {
+          position: absolute;
+          top: -5px;
+          right: -5px;
+        }
       }
     }
   }
@@ -214,6 +221,6 @@ button {
 }
 
 .zoom {
-  background-color: red;
+  transform: scale(.7);
   transition: all .25s ease-in-out;
 }

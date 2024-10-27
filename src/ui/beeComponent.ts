@@ -13,12 +13,21 @@ export class BeeComponent {
   private createElement(initialHealth: number, id: number): HTMLDivElement {
     const div = document.createElement('div');
     const image = this.createImage();
+    const damageContainer = this.createDamageContainer();
     const healthText = this.createHealthText(initialHealth);
 
     div.classList.add('content__item');
     div.setAttribute('data-id', id.toString());
     div.appendChild(image);
     div.appendChild(healthText);
+    div.appendChild(damageContainer);
+
+    return div;
+  }
+
+  private createDamageContainer(): HTMLDivElement {
+    const div = document.createElement('div');
+    div.classList.add('damage');
 
     return div;
   }

@@ -10,7 +10,7 @@ describe('InputField', () => {
 
   beforeEach(() => {
     component = new InputField(placeholderText);
-    document.body.appendChild(component.element); 
+    document.body.appendChild(component.element);
   });
 
   it('should create', () => {

@@ -2,7 +2,7 @@
  * @jest-environment jsdom
  */
 
-import * as SwarnModule from './swarn';
+import { Swarn } from './swarn';
 import { GameController } from './gameController';
 import { Bee } from './interfaces/bee.interface';
 
@@ -32,7 +32,8 @@ jest.mock('./swarn', () => ({
 
 describe('GameController', () => {
   let gameController: GameController;
-  let mockSwarn: SwarnModule.Swarn<Bee>;
+  let swarn: Swarn<Bee>;
+
   beforeEach(() => {
     const playerDataElement = document.createElement('div');
     playerDataElement.classList.add('player-data__name');
@@ -44,7 +45,7 @@ describe('GameController', () => {
     document.body.appendChild(gameControlElement);
 
     gameController = new GameController();
-    mockSwarn = new SwarnModule.Swarn(new Map());
+    swarn = new Swarn(new Map());
   });
 
   afterEach(() => {
@@ -63,7 +64,7 @@ describe('GameController', () => {
     const initNewSwarnSpy = jest.spyOn(gameController as any, 'initNewSwarn');
 
     gameController['onRestartGame']();
-    expect(mockSwarn.hitBee).not.toHaveBeenCalled();
+    expect(swarn.hitBee).not.toHaveBeenCalled();
     expect(initNewSwarnSpy).toHaveBeenCalled();
   });
 });

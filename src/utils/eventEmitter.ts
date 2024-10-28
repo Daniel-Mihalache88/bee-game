@@ -16,7 +16,7 @@ export class EventEmitter<EventMap extends Record<string, Array<any>>> {
     return EventEmitter.instance;
   }
 
-  on<K extends keyof EventMap>(eventName: K, listener: Listener<EventMap[K]>):void {
+  on<K extends keyof EventMap>(eventName: K, listener: Listener<EventMap[K]>): void {
     const listeners = this.eventListeners[eventName] ?? new Set();
     listeners.add(listener);
     this.eventListeners[eventName] = listeners;

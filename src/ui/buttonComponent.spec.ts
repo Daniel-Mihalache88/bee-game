@@ -7,7 +7,7 @@ describe('ButtonComponent', () => {
   let component: Button;
   const buttonText = 'Click me';
   const buttonType = 'button';
-  
+
   beforeEach(() => {
     component = new Button(buttonText, buttonType);
   });

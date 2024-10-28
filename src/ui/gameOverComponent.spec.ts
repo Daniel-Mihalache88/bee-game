@@ -31,7 +31,7 @@ describe('GameOverComponent', () => {
     const messageElement = overlay?.querySelector('h5');
     const buttonElement = overlay?.querySelector('button');
 
-    expect(header?.textContent).toBe('Game Over');4
+    expect(header?.textContent).toBe('Game Over'); 4
     expect(messageElement?.textContent).toBe('The Queen is Dead!');
     expect(buttonElement?.textContent).toBe('Restart');
   });

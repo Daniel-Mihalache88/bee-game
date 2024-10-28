@@ -65,7 +65,7 @@ export class GameController {
   }
 
   private initGame(): void {
-    const gameInProgress = localStorage.getItem('beeGame'); 
+    const gameInProgress = localStorage.getItem('beeGame');
     if (!gameInProgress) {
       this.initNewSwarn();
 
@@ -85,15 +85,15 @@ export class GameController {
   private initHitButton(): void {
     const section = document.createElement('section');
     section.classList.add('game-control');
-    section.insertAdjacentElement('afterbegin',this.hitButton.element);
+    section.insertAdjacentElement('afterbegin', this.hitButton.element);
 
     document.body.insertAdjacentElement('beforeend', section);
-    
+
     this.hitButton.element.addEventListener('click', () => this.handleBeeHit());
   }
 
-  private initNewSwarn():void {
+  private initNewSwarn(): void {
     const newData = Utils.getBeeSwarn();
     this.swarn = new Swarn(newData);
-  } 
+  }
 }

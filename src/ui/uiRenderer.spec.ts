@@ -49,7 +49,7 @@ describe('Renderer', () => {
 
   it('should clear entities', () => {
     renderer['clearEntities']();
-    expect(container.querySelectorAll('.content')[0].innerHTML).toBe(''); 
+    expect(container.querySelectorAll('.content')[0].innerHTML).toBe('');
   });
 
   it('should update health on hit', () => {

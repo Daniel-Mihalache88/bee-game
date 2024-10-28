@@ -5,7 +5,7 @@ describe('Hit Strategies', () => {
   let swarn: Bee[];
 
   beforeEach(() => {
-    swarn = [{ id: 1, type: 'queen', health: 100 },{ id: 2, type: 'worker', health: 100 },{ id: 3, type: 'drone', health: 100 }];
+    swarn = [{ id: 1, type: 'queen', health: 100 }, { id: 2, type: 'worker', health: 100 }, { id: 3, type: 'drone', health: 100 }];
   });
 
   describe('Test QueenHitStrategy', () => {

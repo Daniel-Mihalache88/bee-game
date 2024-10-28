@@ -28,7 +28,7 @@ export class Renderer<T extends Entity> {
 
   onEntityKill(id: number): void {
     const div = this.getEntityContainer(id);
-    if(!div) {
+    if (!div) {
       throw new Error('Entity Container not found!');
     }
 
@@ -56,14 +56,14 @@ export class Renderer<T extends Entity> {
   }
 
   ///check here
-  private clearEntities():void {
+  private clearEntities(): void {
     this.container.querySelectorAll('.content').forEach(el => el.innerHTML = '');
   }
 
   private animateOnHit(element: HTMLDivElement, damage: number): void {
     element.classList.add('zoom');
     element.querySelector('.damage')!.textContent = `-${damage}`;
-    
+
     setTimeout(() => {
       element.classList.remove('zoom');
       element.querySelector('.damage')!.textContent = '';

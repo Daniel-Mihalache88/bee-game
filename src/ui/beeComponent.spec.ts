@@ -11,7 +11,7 @@ describe('BeeComponent', () => {
 
   beforeEach(() => {
     component = new BeeComponent(initialHealth, id);
-    document.body.appendChild(component.element); 
+    document.body.appendChild(component.element);
   });
 
   it('should create', () => {

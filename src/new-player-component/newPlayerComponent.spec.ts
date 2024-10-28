@@ -43,7 +43,7 @@ describe('NewPlayer', () => {
 
   it('should emit "playerCreated" event and remove overlay on submit', () => {
     const spy = EventEmitter.getInstance().emit;
-    
+
     const form = document.querySelector('form')!;
     const input = form.querySelector('input')!;
 

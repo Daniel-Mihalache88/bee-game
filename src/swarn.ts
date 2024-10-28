@@ -3,7 +3,7 @@ import { EventMap } from './interfaces/eventMap.interface';
 import { QueenHitStrategy, WorkerHitStrategy, DroneHitStrategy } from './utils/hitStrategies.js';
 import { HitStrategy } from './interfaces/hitStrategy.interface';
 import { Entity } from './interfaces/entity.interface';
-import { SwarnData } from './interfaces/bee.interface.js';
+import { SwarnData } from './interfaces/bee.interface';
 
 export class Swarn<T extends Entity> {
   private emitter: EventEmitter<EventMap>;

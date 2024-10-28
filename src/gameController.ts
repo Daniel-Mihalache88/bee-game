@@ -1,19 +1,20 @@
-import { Bee } from './interfaces/bee.interface.js';
+import { Bee } from './interfaces/bee.interface';
 import { Swarn } from './swarn.js';
 import { Utils } from './utils/utils.js';
 import { NewPlayer } from './new-player-component/newPlayerComponent.js';
 import { EventEmitter } from './utils/eventEmitter.js';
-import { EventMap } from './interfaces/eventMap.interface.js';
+import { EventMap } from './interfaces/eventMap.interface';
 import { Renderer } from './ui/uiRenderer.js';
 import { Button } from './ui/buttonComponent.js';
 
 export class GameController {
-  private hitButton = new Button('Hit', 'button');
+  private hitButton: Button;
   private renderer: Renderer<Bee>;
   private emitter: EventEmitter<EventMap>;
   private swarn: Swarn<Bee> | null = null;
 
   constructor() {
+    this.hitButton = new Button('Hit', 'button');
     this.emitter = EventEmitter.getInstance<EventMap>();
     this.handlePlayer();
     this.initGame();
@@ -28,13 +29,6 @@ export class GameController {
     this.emitter.on('gameOver', (data) => this.updateUIOnGameOver(data));
     this.emitter.on('playerCreated', (data) => this.setPlayerName(data));
     this.emitter.on('restartGame', () => this.onRestartGame());
-  }
-
-  private initHitButton(): void {
-    const buttonWrapper = document.querySelector('.game-control') as HTMLDivElement;
-    buttonWrapper.appendChild(this.hitButton.element);
-
-    this.hitButton.element.addEventListener('click', () => this.handleBeeHit());
   }
 
   private handleBeeHit(): void {
@@ -71,7 +65,7 @@ export class GameController {
   }
 
   private initGame(): void {
-    const gameInProgress = localStorage.getItem('beeGame');
+    const gameInProgress = localStorage.getItem('beeGame'); 
     if (!gameInProgress) {
       this.initNewSwarn();
 
@@ -88,8 +82,18 @@ export class GameController {
     this.renderer.renderContent(this.swarn!.entities);
   }
 
+  private initHitButton(): void {
+    const section = document.createElement('section');
+    section.classList.add('game-control');
+    section.insertAdjacentElement('afterbegin',this.hitButton.element);
+
+    document.body.insertAdjacentElement('beforeend', section);
+    
+    this.hitButton.element.addEventListener('click', () => this.handleBeeHit());
+  }
+
   private initNewSwarn():void {
     const newData = Utils.getBeeSwarn();
     this.swarn = new Swarn(newData);
-  }
+  } 
 }

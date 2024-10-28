@@ -2,7 +2,7 @@ import { Form } from '../ui/formComponent.js';
 import { InputField } from '../ui/inputComponent.js';
 import { Button } from '../ui/buttonComponent.js';
 import { EventEmitter } from '../utils/eventEmitter.js';
-import { EventMap } from '../interfaces/eventMap.interface.js';
+import { EventMap } from '../interfaces/eventMap.interface';
 
 export class NewPlayer {
   private form: Form;

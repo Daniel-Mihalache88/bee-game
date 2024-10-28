@@ -55,8 +55,9 @@ export class Renderer<T extends Entity> {
     this.container.querySelector(`.swarn__element--${entity.type} .content`)?.appendChild(uiElement.element);
   }
 
+  ///check here
   private clearEntities():void {
-    this.container.querySelectorAll('.swarn .content').forEach(el => el.innerHTML = '');
+    this.container.querySelectorAll('.content').forEach(el => el.innerHTML = '');
   }
 
   private animateOnHit(element: HTMLDivElement, damage: number): void {

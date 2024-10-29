@@ -1,3 +1,3 @@
-import { GameController } from "./gameController.js";
+import { GameController } from "./gameController";
 
 new GameController();

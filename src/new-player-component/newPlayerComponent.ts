@@ -1,7 +1,7 @@
-import { Form } from '../ui/formComponent.js';
-import { InputField } from '../ui/inputComponent.js';
-import { Button } from '../ui/buttonComponent.js';
-import { EventEmitter } from '../utils/eventEmitter.js';
+import { Form } from '../ui/formComponent';
+import { InputField } from '../ui/inputComponent';
+import { Button } from '../ui/buttonComponent';
+import { EventEmitter } from '../utils/eventEmitter';
 import { EventMap } from '../interfaces/eventMap.interface';
 
 export class NewPlayer {

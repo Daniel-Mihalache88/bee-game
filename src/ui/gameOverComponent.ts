@@ -1,6 +1,6 @@
 import { EventMap } from '../interfaces/eventMap.interface';
-import { EventEmitter } from '../utils/eventEmitter.js';
-import { Button } from './buttonComponent.js';
+import { EventEmitter } from '../utils/eventEmitter';
+import { Button } from './buttonComponent';
 
 export class GameOver {
   container: HTMLDivElement;

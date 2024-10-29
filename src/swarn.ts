@@ -1,6 +1,6 @@
-import { EventEmitter } from './utils/eventEmitter.js';
+import { EventEmitter } from './utils/eventEmitter';
 import { EventMap } from './interfaces/eventMap.interface';
-import { QueenHitStrategy, WorkerHitStrategy, DroneHitStrategy } from './utils/hitStrategies.js';
+import { QueenHitStrategy, WorkerHitStrategy, DroneHitStrategy } from './utils/hitStrategies';
 import { HitStrategy } from './interfaces/hitStrategy.interface';
 import { Entity } from './interfaces/entity.interface';
 import { SwarnData } from './interfaces/bee.interface';

@@ -4,9 +4,9 @@
   "description": "bee_game",
   "main": "dist/app.js",
   "scripts": {
+    "build": "tsc && node addJsExtension.js",
     "start": "lite-server",
-    "dev": "tsc -w",
-    "test": "jest --coverage"
+    "test": "jest"
   },
   "author": "DanielMihalache",
   "license": "ISC",

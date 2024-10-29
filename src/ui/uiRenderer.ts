@@ -1,6 +1,6 @@
 import { Entity } from '../interfaces/entity.interface';
-import { BeeComponent } from './beeComponent.js';
-import { GameOver } from './gameOverComponent.js';
+import { BeeComponent } from './beeComponent';
+import { GameOver } from './gameOverComponent';
 
 export class Renderer<T extends Entity> {
   private readonly container: HTMLDivElement;

@@ -1,11 +1,11 @@
 import { Bee } from './interfaces/bee.interface';
-import { Swarn } from './swarn.js';
-import { Utils } from './utils/utils.js';
-import { NewPlayer } from './new-player-component/newPlayerComponent.js';
-import { EventEmitter } from './utils/eventEmitter.js';
+import { Swarn } from './swarn';
+import { Utils } from './utils/utils';
+import { NewPlayer } from './new-player-component/newPlayerComponent';
+import { EventEmitter } from './utils/eventEmitter';
 import { EventMap } from './interfaces/eventMap.interface';
-import { Renderer } from './ui/uiRenderer.js';
-import { Button } from './ui/buttonComponent.js';
+import { Renderer } from './ui/uiRenderer';
+import { Button } from './ui/buttonComponent';
 
 export class GameController {
   private hitButton: Button;
